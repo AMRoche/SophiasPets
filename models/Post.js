@@ -16,7 +16,15 @@ Post.add({
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
 	author: { type: Types.Relationship, ref: 'User', index: true },
 	publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
-	image: { type: Types.CloudinaryImage },
+	image: {
+		type: Types.LocalFile,
+		required: false,
+		index: true,
+		dest: 'public/uploads/files/images/',
+		format: function(item, file){
+			return '<img src="/'+item.imagePath+file.filename+'" style="max-width: 400px">'
+		}
+	},
 	content: {
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
 		extended: { type: Types.Html, wysiwyg: true, height: 400 }
