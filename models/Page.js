@@ -14,9 +14,10 @@ var Page = new keystone.List('Page', {
 Page.add({
 	pageTitle: { type: String, required: true, initial:true },
 	showOnMenu: { type: Boolean, required: true, default:false},
-	menuTitle: { type: String, dependsOn: { showOnMenu:true } },
-	menuOrder: { type: Number, dependsOn: { showOnMenu:true } },
-	blog: { type: Boolean, required: true, default:false},
+	mainPage: { type: Boolean, dependsOn: { showOnMenu: true} },
+	blog: { type: Boolean, default:false},
+	menuTitle: { type: String, dependsOn: { showOnMenu: true } },
+	menuOrder: { type: Types.Number, dependsOn: { showOnMenu:true } },
 	content: { type: Types.Markdown, wysiwyg: true, height: 500, dependsOn: { blog:false } }
 });
 
