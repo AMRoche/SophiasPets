@@ -51,11 +51,17 @@
 			</div>
 			{{/if}}
 				<div class="col-md-3">
-					<img class="col-md-12" src="/images/logoBlack.png" alt="Sophia's Pet Care Services Logo">
+					<a href="/">
+						<img class="col-md-12" src="/images/logoBlack.png" alt="Sophia's Pet Care Services Logo">
+					</a>
 					<nav class="menu col-md-12">
-						{{# each data.menuItems}}
+						{{# each nav}}
 							<div class="item">
-								<a href="/{{slug}}"> {{menuTitle}} - {{menuOrder}} - {{slug}}</a>
+								{{#if blog}}
+									<a href="/blog/"> {{menuTitle}} - {{menuOrder}} - {{slug}} </a>
+								{{else}}
+									<a href="/page/{{slug}}"> {{menuTitle}} - {{menuOrder}} - {{slug}} </a>
+								{{/if}}
 							</div>
 						{{/each}}
 					</nav>
