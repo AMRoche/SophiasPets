@@ -34,6 +34,7 @@ exports.initLocals = function(req, res, next) {
 		{ label: 'Contact',		key: 'contact',		href: '/contact' }
 	];
 
+	locals.data = {};
 
 	locals.user = req.user;
 

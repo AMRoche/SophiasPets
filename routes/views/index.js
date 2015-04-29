@@ -5,15 +5,26 @@ exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res),
 		locals = res.locals;
 
-	// locals.section is used to set the currently selected
-	// item in the header navigation.
+	pickIndex();
+
+	function pickIndex(){
+		var q = keystone.list('Page').model.findOne({
+			mainPage: true
+		});
+
+		q.exec(function(err, result) {
+			locals.data.page = result;
+
+			if(locals.data.page != null)
+			{
+				view.render('page');
+			}
+			else
+			{
+				view.render('index');
+			}
+		});
+	}
+
 	locals.section = 'home';
-
-	// Load the current post
-	// view.on('init', function(next) {
-	// });
-
-	// Render the view
-	view.render('index');
-
 };
