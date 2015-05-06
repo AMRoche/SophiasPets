@@ -18,7 +18,7 @@ Page.add({
 	blog: { type: Boolean, default:false},
 	menuTitle: { type: String, dependsOn: { showOnMenu: true } },
 	menuOrder: { type: Types.Number, dependsOn: { showOnMenu:true } },
-	content: { type: Types.Markdown, wysiwyg: true, height: 500, dependsOn: { blog:false } }
+	content: { type: Types.Markdown, wysiwyg: true, height: 500, dependsOn: { blog:false } },
 });
 
 Page.schema.virtual('content.full').get(function() {

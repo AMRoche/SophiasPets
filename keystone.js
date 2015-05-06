@@ -13,6 +13,17 @@ var keystone = require('keystone'),
 
 
 keystone.init({
+	'wysiwyg override toolbar': false,
+'wysiwyg menubar': true,
+'wysiwyg skin': 'lightgray',
+'wysiwyg additional buttons': 'searchreplace, visualchars,'
+ + ' charmap, ltr, rtl, pagebreak, paste, forecolor, backcolor,'
+ +' emoticons, media, preview, code, template ',
+'wysiwyg additional plugins': 'table, advlist, anchor,'
+ + ' autolink, autosave, bbcode, charmap, contextmenu, '
+ + ' directionality, emoticons, fullpage, hr, media, pagebreak,'
+ + ' paste, preview, print, searchreplace, textcolor,'
+ + ' visualblocks, visualchars, wordcount',
 
 	'name': 'SophiasPetcare',
 	'brand': 'SophiasPetcare',

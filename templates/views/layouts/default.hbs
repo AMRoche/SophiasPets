@@ -11,7 +11,41 @@
 		{{/if}}
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link href="/styles/site.min.css" rel="stylesheet">
+		<style>
+			.contentContainer {
+				padding: 0px;
+			}
 
+			.menuContainer {
+				position: fixed;
+				display: block;
+				z-index: 999;
+				background-color: white;
+				padding: 0px;
+			}
+
+			.menuContainer a {
+				padding: 0px;
+			}
+
+			@media (max-width: 991px) {
+				.menuContainer {
+					width: 100%;
+				}
+			}
+
+			@media (max-width: 1199px) and (min-width: 992px) {
+				.menuContainer {
+					width: calc(80% * 0.333333);
+				}
+			}
+
+			@media (min-width: 1200px) {
+				.menuContainer {
+					width: calc(80% * 0.25);
+				}
+			}
+		</style>
 		{{!-- This file provides the default styling for the KeystoneJS Content Editor
 			- only renders when user is logged in and admin--}}
 		{{{isAdminEditorCSS user}}}
@@ -25,7 +59,7 @@
 
 	</head>
 	<body>
-		<div id="body" class="col-md-10 col-md-offset-1">
+		<div id="body" class="col-md-10 col-md-offset-1 col-xs-12">
 			<!--
 				Flash messages allow you to display once-off status messages to users, e.g. form
 				validation errors, success messages, etc
@@ -54,11 +88,12 @@
 				{{/if}}
 			</div>
 			{{/if}}
-				<div class="col-md-3">
-					<a href="/" title="Take me home!">
-						<img class="col-md-12" src="/images/logoBlack.png" alt="Sophia's Pet Care Services Logo">
+				<div class="menuContainer col-md-4 col-lg-3 col-xs-12">
+					<a href="/" class="col-xs-4 col-md-12" title="Take me home!">
+						<img class="hidden-xs hidden-sm col-md-12" src="/images/logoBlack.png" alt="Sophia's Pet Care Services Logo">
+						<img class="col-xs-12 hidden-md hidden-lg" src="/images/logoBlackSmall.png" alt="Sophia's Pet Care Services Logo">
 					</a>
-					<nav class="menu col-md-12">
+					<nav class="menu col-md-12 col-xs-8">
 						{{# each nav}}
 							<div class="item">
 								{{#if blog}}
@@ -70,11 +105,11 @@
 						{{/each}}
 					</nav>
 				</div>
-				<div class="col-md-9">
+				<div class="contentContainer col-md-offset-4 col-lg-offset-3 col-md-8 col-lg-9 col-xs-12">
 				<!-- The content block should contain the body of your template's content-->
 				{{{body}}}
 				</div>
-			<div class="col-md-12">
+			<div class="col-xs-12 col-md-10">
 				{{>footer}}
 			</div>
 		</div>
