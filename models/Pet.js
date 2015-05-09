@@ -16,8 +16,8 @@ Pet.add({
 	species: { type: Types.Relationship, ref: 'species', many: false },
 	image: {
 		type: Types.LocalFile,
-		dest: '/public/uploads/files/images/pets/',
-		prefix: '/uploads/files/images/pets/'
+		dest: 'public/uploads/files/images/pets/',
+		prefix: 'uploads/files/images/pets/'
 	},
 	notes: { type: Types.Html, wysiwyg: true, height: 150 }
 });
