@@ -58,6 +58,14 @@
 				font-size: 18px;
 			}
 
+			.menuContainer .hamburger-menu {
+				height: 100%;
+				background-color: #4056A1;
+				width: 94px;
+				float: right;
+				margin-right: 30px;
+			}
+
 			.item {
 				clear: left;
 				margin-bottom: 5px;
@@ -95,11 +103,15 @@
 			@media (max-width: 991px) {
 				.menuContainer {
 					width: 100%;
-					max-height: 150px;
+					max-height: 100px;
 				}
 
 				.menuContainer img {
-					height: 150px;
+					height: 100px;
+				}
+
+				.menuContainer .hamburger-menu {
+					height: 100px;
 				}
 
 				.contentContainer .jumbotron{
@@ -177,11 +189,14 @@
 			{{/if}}
 				<div class="menuContainer col-md-4 col-lg-3 col-xs-12">
 					<a href="/" class="col-md-12" title="Take me home!">
-						<img class="hidden-xs hidden-sm col-md-12" src="/images/logoBlack.png" alt="Sophia's Pet Care Services Logo">
-						<img class="hidden-md hidden-lg" src="/images/logoBlackSmall.png" alt="Sophia's Pet Care Services Logo">
+						<img class="hidden-xs hidden-sm col-md-12" src="/images/logoBlack.png" alt="Sophia's Pet Care Services Logo"/>
+						<img class="hidden-md hidden-lg" src="/images/logoBlackSmall.png" alt="Sophia's Pet Care Services Logo"/>
+					</a>
+					<a href="#menu" class="hamburger-menu ">
+						<img src="/images/hamburger-transparent.png" alt="Hamburger logo" class="hidden-md hidden-lg"/>
 					</a>
 					<hr class="hidden-xs hidden-sm col-md-11">
-					<nav class="menu col-md-12">
+					<nav class="menu col-md-12 hidden-xs hidden-sm">
 						{{# each nav}}
 							<div class="item">
 								{{#if blog}}
