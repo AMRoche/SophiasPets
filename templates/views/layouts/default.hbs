@@ -11,7 +11,10 @@
 		{{/if}}
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link href="/styles/site.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Belleza|Bilbo' rel='stylesheet' type='text/css'>
 		<style>
+
+
 
 			/**
 			 * @accent #FF6600; //orange
@@ -23,14 +26,40 @@
 			 * @text #000000; //black text
 			 * @off-white #727375; //gray text from logo
 			 */
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			html, body {
+				min-height: 100%;
+				width: 100%;
+			}
+
+			body {
+				float: left;
+				min-width: 300px;
+			}
 
 			body * {
-				font-family: sans-serif;
-				font-weight: bold;
+				font-family: 'Belleza', sans-serif;
+				/*font-weight: bold;*/
+				line-height: 1.1;
 			}
 
 			p, li, a {
 				font-size: 16px;
+			}
+
+			.homeLink {
+				padding: 0px;
+			}
+
+			.menuContainer .smallLogo {
+				position: relative;
+				left: 0px;
+				margin-left: 0px;
 			}
 
 			.menuContainer hr, hr {
@@ -48,9 +77,13 @@
 			.menuContainer .menu {
 				float:left;
 				padding: 0px;
+				font-family: 'Bilbo', Arial, sans-serif;
 			}
 
-			.menuContainer .menu a {
+			.menuContainer .menu a,
+			.menuContainer .menu a:hover,
+			.menuContainer .menu a:visited,
+			.menuContainer .menu a:active {
 				color: #173F94;
 				display: block;
 				width: 100%;
@@ -58,12 +91,18 @@
 				font-size: 18px;
 			}
 
+			.menuContainer .menu a .active {
+				text-decoration: underline
+			}
+
+
 			.menuContainer .hamburger-menu {
 				height: 100%;
 				background-color: #4056A1;
-				width: 94px;
-				float: right;
+				width: 100px;
 				margin-right: 30px;
+				position: absolute;
+				right: 0;
 			}
 
 			.item {
@@ -85,11 +124,14 @@
 			.contentContainer h3,
 			.contentContainer h4
 			{
-				font-family: cursive;
+				font-family: 'Bilbo', Arial, sans-serif;
+				font-weight: bold;
+				/*text-transform: uppercase;*/
 			}
 
 			.contentContainer img, .contentContainer iframe {
 				border: 2px solid #FF6600;
+				padding: 5px;
 			}
 
 			.menuContainer {
@@ -103,7 +145,12 @@
 			@media (max-width: 991px) {
 				.menuContainer {
 					width: 100%;
-					max-height: 100px;
+					min-width: 300px;
+				}
+
+				.menuContainer, .contentSpacer
+				{
+					height: 100px;
 				}
 
 				.menuContainer img {
@@ -188,11 +235,11 @@
 			</div>
 			{{/if}}
 				<div class="menuContainer col-md-4 col-lg-3 col-xs-12">
-					<a href="/" class="col-md-12" title="Take me home!">
+					<a href="/" class="col-md-12 homeLink" title="Take me home!">
 						<img class="hidden-xs hidden-sm col-md-12" src="/images/logoBlack.png" alt="Sophia's Pet Care Services Logo"/>
-						<img class="hidden-md hidden-lg" src="/images/logoBlackSmall.png" alt="Sophia's Pet Care Services Logo"/>
+						<img class="smallLogo hidden-md hidden-lg" src="/images/logoBlackSmall.png" alt="Sophia's Pet Care Services Logo"/>
 					</a>
-					<a href="#menu" class="hamburger-menu ">
+					<a href="#menu" class="hamburger-menu hidden-md hidden-lg">
 						<img src="/images/hamburger-transparent.png" alt="Hamburger logo" class="hidden-md hidden-lg"/>
 					</a>
 					<hr class="hidden-xs hidden-sm col-md-11">
@@ -200,19 +247,24 @@
 						{{# each nav}}
 							<div class="item">
 								{{#if blog}}
-									<a href="/blog/"> {{menuTitle}} - {{menuOrder}} </a>
+									<a href="/blog/" class="{{#ifeq section 'blog'}}.active{{else}}{{/ifeq}}
+"> {{menuTitle}} - {{menuOrder}} </a>
 								{{else}}
-									<a href="/page/{{slug}}"> {{menuTitle}} - {{menuOrder}} </a>
+									<a href="/page/{{slug}}" class="{{#ifeq section this.slug}}.active{{else}}{{/ifeq}}
+"> {{menuTitle}} - {{menuOrder}} </a>
 								{{/if}}
 							</div>
 						{{/each}}
 					</nav>
 				</div>
+				<div class="contentSpacer col-md-hidden col-lg-hidden"></div>
 				<div class="contentContainer col-md-offset-4 col-lg-offset-3 col-md-8 col-lg-9 col-xs-12">
-				<!-- The content block should contain the body of your template's content-->
-				{{{body}}}
+					<div>
+					<!-- The content block should contain the body of your template's content-->
+						{{{body}}}
+					</div>
 				</div>
-		</div>
+			</div>
 
 			<div class="footer col-xs-12 col-md-10 col-xs-offset-0 col-md-offset-1">
 			<hr>
