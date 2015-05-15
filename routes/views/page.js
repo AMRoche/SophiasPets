@@ -18,15 +18,11 @@ exports = module.exports = function(req, res) {
 
 		q.exec(function(err, result) {
 			locals.data.page = result;
+			locals.section = result.slug;
 			next(err);
 		});
 	});
 
-	// locals.section is used to set the currently selected
-	// item in the header navigation.
-	locals.section = 'page';
-
 	// Render the view
 	view.render('page');
-
 };

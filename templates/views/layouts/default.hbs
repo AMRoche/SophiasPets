@@ -78,23 +78,34 @@
 				float:left;
 				padding: 0px;
 				font-family: 'Bilbo', Arial, sans-serif;
+				padding-bottom:15px;
 			}
 
 			.menuContainer .menu a,
 			.menuContainer .menu a:hover,
 			.menuContainer .menu a:visited,
 			.menuContainer .menu a:active {
-				color: #173F94;
+				font-family: 'Bilbo', Arial, sans-serif;
+				color:#4056A1;
 				display: block;
+				text-decoration: none;
 				width: 100%;
 				text-align: center;
-				font-size: 18px;
+				font-size: 22px;
 			}
 
-			.menuContainer .menu a .active {
-				text-decoration: underline
+			.menuContainer .menu a:hover {
+				color:#FF6600;
+
 			}
 
+			.menuContainer .menu a.activePage{
+				font-weight: bold;
+			}
+
+			.menuContainer .menu a.activePage:hover{
+				color:#4056A1;
+			}
 
 			.menuContainer .hamburger-menu {
 				height: 100%;
@@ -113,6 +124,7 @@
 			.contentContainer {
 				padding: 30px;
 				padding-top : 15px;
+				min-height:500px;
 			}
 
 			.contentContainer p {
@@ -247,11 +259,11 @@
 						{{# each nav}}
 							<div class="item">
 								{{#if blog}}
-									<a href="/blog/" class="{{#ifeq section 'blog'}}.active{{else}}{{/ifeq}}
-"> {{menuTitle}} - {{menuOrder}} </a>
+									<a href="/blog/" class="{{#ifeq ../../this.section 'blog'}}activePage{{else}}{{/ifeq}}
+"> {{menuTitle}} </a>
 								{{else}}
-									<a href="/page/{{slug}}" class="{{#ifeq section this.slug}}.active{{else}}{{/ifeq}}
-"> {{menuTitle}} - {{menuOrder}} </a>
+									<a href="/page/{{slug}}" class="{{#ifeq ../../section this.slug}}activePage{{else}}{{/ifeq}}
+"> {{menuTitle}} </a>
 								{{/if}}
 							</div>
 						{{/each}}
@@ -294,6 +306,20 @@
 
 		ga('create', 'UA-62342336-1', 'auto');
 		ga('send', 'pageview');
+	</script>
+
+	<script>
+	$( document ).ready(function(){
+		resizeContentContainer();
+	});
+
+	function resizeContentContainer()
+	{
+		var height = $('.menuContainer').height();
+
+		$('.contentContainer').css('min-height', height+'px');
+	}
+
 	</script>
 
 </html>
