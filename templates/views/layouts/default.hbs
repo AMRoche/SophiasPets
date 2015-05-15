@@ -79,19 +79,32 @@
 				padding: 0px;
 				font-family: 'Bilbo', Arial, sans-serif;
 				padding-bottom:15px;
+				background-color:white;
 			}
 
-			.menuContainer .menu a,
-			.menuContainer .menu a:hover,
-			.menuContainer .menu a:visited,
-			.menuContainer .menu a:active {
+			.menuContainer div.menu.mobileMenu {
+				clear: both;
+				display: block;
+				width: 100%;
+				border-top: 2px solid #FF6600;
+				border-bottom: 2px solid #ff6600;
+				padding-top:15px;
+				margin-right:30px;
+			}
+
+			.menuContainer .menu a {
 				font-family: 'Bilbo', Arial, sans-serif;
 				color:#4056A1;
 				display: block;
-				text-decoration: none;
 				width: 100%;
 				text-align: center;
 				font-size: 22px;
+			}
+
+			.menuContainer .menu a:hover,
+			.menuContainer .menu a:visited,
+			.menuContainer .menu a:active {
+				text-decoration: none;
 			}
 
 			.menuContainer .menu a:hover {
@@ -107,6 +120,17 @@
 				color:#4056A1;
 			}
 
+			.menuContainer .hamburger-menu img.active {
+				border: 2px solid #FF6600;
+				border-width: 2px;
+			}
+
+			.menuContainer .hamburger-menu img {
+				border: 0px solid white;
+				-webkit-transition: border .25s linear;
+				-moz-transition: border .25s linear;
+			}
+
 			.menuContainer .hamburger-menu {
 				height: 100%;
 				background-color: #4056A1;
@@ -114,6 +138,23 @@
 				margin-right: 30px;
 				position: absolute;
 				right: 0;
+			}
+
+			.menuContainer .menu.active {
+				width:100%;
+				-webkit-transition: all 5s ease-in-out;
+				-moz-transition: all 5s ease-in-out;
+
+			}
+
+			.active .item {
+				padding-top:10px;
+				padding-bottom:10px;
+			}
+
+			.active .item a {
+								font-size:36px;
+
 			}
 
 			.item {
@@ -310,14 +351,28 @@
 
 	<script>
 	$( document ).ready(function(){
+		hamburgerMenu();
 		resizeContentContainer();
 	});
+
+	function hamburgerMenu()
+	{
+		$('.hamburger-menu').click(
+			function() {
+				$( this ).children('img').toggleClass('active');
+				$('.menu').toggleClass('active');
+				$('.menu').toggleClass('hidden-xs');
+				$('.menu').toggleClass('hidden-sm');
+			}
+		);
+	}
 
 	function resizeContentContainer()
 	{
 		var height = $('.menuContainer').height();
 
 		$('.contentContainer').css('min-height', height+'px');
+
 	}
 
 	</script>
