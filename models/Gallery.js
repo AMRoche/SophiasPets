@@ -23,9 +23,8 @@ Gallery.add({
 		}
 	},
 	images: {
-		type: Types.LocalFile,
+		type: Types.LocalFiles,
 		required: false,
-		index: true,
 		dest: 'public/uploads/files/images/',
 		format: function(item, file){
 			return '<img src="/'+item.imagePath+file.filename+'" style="max-width: 400px">'

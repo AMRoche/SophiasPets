@@ -11,7 +11,36 @@
 		{{/if}}
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link href="/styles/site.min.css" rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Belleza|Bilbo' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Belleza|Bilbo' rel='stylesheet' type='text/css'>
+
+		{{!--
+			//- jQuery 1.11.1 is included by default, and required by both Bootstrap
+			//- and the KeystoneJS Content Editor. If you are not targeting IE8,
+			//- you can upgrade to 2.1.1 (also bundled) for better performance.
+		--}}
+		<script src="/js/lib/jquery/jquery-1.11.1.min.js"></script>
+		{{!--
+			//- Customise which Bootstrap javascript files are served by including
+			//- them specifically here, instead of bootstrap-3.2.0.min.js
+		--}}
+		<script src="/js/lib/bootstrap/bootstrap-3.2.0.min.js"></script>
+
+<!-- Add fancyBox -->
+<link rel="stylesheet" href="/js/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="/js/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<!-- Optionally add helpers - button, thumbnail and/or media -->
+<link rel="stylesheet" href="/js/lib/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+<script type="text/javascript" src="/js/lib/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<script type="text/javascript" src="/js/lib/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+<link rel="stylesheet" href="/js/lib/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+<script type="text/javascript" src="/js/lib/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+
+
+
+
 		<style>
 
 
@@ -134,7 +163,6 @@
 			.menuContainer .hamburger-menu {
 				height: 100%;
 				background-color: #4056A1;
-				width: 100px;
 				margin-right: 30px;
 				position: absolute;
 				right: 0;
@@ -153,8 +181,7 @@
 			}
 
 			.active .item a {
-								font-size:36px;
-
+				font-size:36px;
 			}
 
 			.item {
@@ -201,21 +228,12 @@
 					min-width: 300px;
 				}
 
-				.menuContainer, .contentSpacer
+				.menuContainer,
+				.contentSpacer,
+				.menuContainer img,
+				.menuContainer .hamburger-menu
 				{
-					height: 100px;
-				}
-
-				.menuContainer img {
-					height: 100px;
-				}
-
-				.menuContainer .hamburger-menu {
-					height: 100px;
-				}
-
-				.contentContainer .jumbotron{
-					padding-top: 150px;
+					height: 75px;
 				}
 
 				.contentContainer{
@@ -234,7 +252,8 @@
 
 				.menuContainer {
 					width: calc(80% * 0.25);
-				}			}
+				}
+			}
 
 			.footer {
 				padding-bottom: 20px;
@@ -242,6 +261,16 @@
 
 			.footer hr{
 				margin-top:0px;
+			}
+
+			.footer * {
+				/*float:left;*/
+			}
+
+			.footer img {
+				height:100%;
+				height:100px;
+				width: auto;
 			}
 
 		</style>
@@ -257,6 +286,7 @@
 		<![endif]-->
 
 	</head>
+	<div id="fb-root"></div>
 	<body>
 		<div id="body" class="col-md-10 col-md-offset-1 col-xs-12">
 			<!--
@@ -324,18 +354,6 @@
 				{{>footer}}
 			</div>
 
-
-		{{!--
-			//- jQuery 1.11.1 is included by default, and required by both Bootstrap
-			//- and the KeystoneJS Content Editor. If you are not targeting IE8,
-			//- you can upgrade to 2.1.1 (also bundled) for better performance.
-		--}}
-		<script src="/js/lib/jquery/jquery-1.11.1.min.js"></script>
-		{{!--
-			//- Customise which Bootstrap javascript files are served by including
-			//- them specifically here, instead of bootstrap-3.2.0.min.js
-		--}}
-		<script src="/js/lib/bootstrap/bootstrap-3.2.0.min.js"></script>
 		{{{isAdminEditorJS user}}}
 	</body>
 
@@ -347,13 +365,48 @@
 
 		ga('create', 'UA-62342336-1', 'auto');
 		ga('send', 'pageview');
-	</script>
 
-	<script>
+
 	$( document ).ready(function(){
 		hamburgerMenu();
 		resizeContentContainer();
+		addFacebook();
+		addFancybox();
+		addTwitter();
 	});
+
+	function addFancybox()
+	{
+		$(".fancybox-thumb").fancybox({
+			prevEffect	: 'none',
+			nextEffect	: 'none',
+			helpers	: {
+				title	: {
+					type: 'outside'
+				},
+				thumbs	: {
+					width	: 50,
+					height	: 50
+				}
+			}
+		});
+	}
+
+	function addFacebook()
+	{
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=154519498084597";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	}
+
+	function addTwitter()
+	{
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+	}
 
 	function hamburgerMenu()
 	{
@@ -363,6 +416,12 @@
 				$('.menu').toggleClass('active');
 				$('.menu').toggleClass('hidden-xs');
 				$('.menu').toggleClass('hidden-sm');
+
+				var docHeight = $(window).height();
+				var height = $('.menuContainer').height();
+
+				$('.menu').css('max-height', (docHeight - height)+'px');
+				$('.menu').css('overflow-y','scroll');
 			}
 		);
 	}
@@ -370,8 +429,7 @@
 	function resizeContentContainer()
 	{
 		var height = $('.menuContainer').height();
-
-		$('.contentContainer').css('min-height', height+'px');
+		$('.contentContainer').css('min-height', (height+10)+'px');
 
 	}
 
