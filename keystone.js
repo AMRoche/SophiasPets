@@ -69,6 +69,7 @@ keystone.set('locals', {
 
 keystone.set('mongo', 'mongodb://sophiaspetcare:petcare@localhost/sophiaspetcare');
 // Load your project's Routes
+keystone.set('port', '8080');
 
 keystone.set('routes', require('./routes'));
 
