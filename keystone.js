@@ -67,6 +67,7 @@ keystone.set('locals', {
 	editable: keystone.content.editable
 });
 
+keystone.set('mongo', 'mongodb://sophiaspetcare:petcare@localhost/sophiaspetcare');
 // Load your project's Routes
 
 keystone.set('routes', require('./routes'));
