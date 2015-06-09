@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="keywords" content="Pet Walking, Pet Sitting, Dog Sitting, Dog Feeding, Cat Sitting, Cat Feeding, Pop In Visits, Microchip, Overnight Stay, Petcare, Pet Taxi, Friendly, Transport, Balham, Battersea, Brixton, Chelsea, Clapham, East Dulwish, Morden, Tooting Bec, Wandsworth, Wimbledon ">
+		<meta name="keywords" content="Pet Walking, Pet Sitting, Dog Sitting, Dog Feeding, Cat Sitting, Cat Feeding, Pop In Visits, Microchip, Overnight Stay, Petcare, Pet Taxi, Friendly, Transport, Balham, Battersea, Brixton, Chelsea, Clapham, East Dulwich, Morden, Tooting Bec, Wandsworth, Wimbledon ">
 		<meta name="description" content="Experienced, Friendly and Insured Petcare Specialist offering a wealth of services throughout West and South London">
 		<meta name="robots" content="index,follow">
 		{{#if data.page.pageTitle}}
@@ -24,7 +24,7 @@
 		<link rel="stylesheet" href="/js/lib/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
 
 		<link rel="stylesheet" href="/js/lib/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
-
+		<link rel="stylesheet" href="/styles/twitter.css" type="text/css" />
 		<style>
 
 			/**
@@ -41,6 +41,44 @@
 				box-sizing: border-box;
 				margin: 0;
 				padding: 0;
+			}
+
+			footer .footer-wrapper {
+				text-align: center;
+			}
+
+			footer img, footer .social {
+				margin: 0px 10px;
+			}
+
+			footer .amroche-logo {
+				margin-top: 20px;
+			}
+
+			footer .amroche-logo img {
+				margin: 0px;
+			}
+
+			footer span.twitter-button iframe.twitter-share-button {
+				position:relative;
+				top:30px;
+			}
+
+			footer div.fb-share-button {
+				bottom: 12px;
+				margin-left: 20px;
+			}
+
+			footer div.social {
+				display: inline-block;
+				height: 100%;
+				position: relative;
+				top: 15px;
+			}
+
+			footer div.thumbs {
+				height: 100%;
+				display: inline-block;
 			}
 
 			html, body {
@@ -232,6 +270,15 @@
 			}
 
 			@media (max-width: 991px) {
+				footer div.social, footer div.thumbs {
+					display: block;
+				}
+
+				footer div.social {
+					top: 0px;
+					margin-bottom: 20px;
+				}
+
 				.menuContainer {
 					width: 100%;
 					min-width: 300px;
@@ -434,7 +481,8 @@
 
 	function addTwitter()
 	{
-		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);
+		}}(document, 'script', 'twitter-wjs');
 	}
 
 	function hamburgerMenu()
