@@ -38,11 +38,30 @@ exports.initLocals = function(req, res, next) {
 
 	locals.user = req.user;
 
-	var q = keystone.list('Page').model.find().where('showOnMenu', true).sort('menuOrder');
+	keystone.list('Page').model.find().where('showOnMenu', true)
+		.exec(function(err, results) {
 
-	q.exec(function(err, results) {
-		locals.nav = results;
-		next(err);
+		var g = keystone.list('Gallery').model.find().where('showOnMenu', true);
+
+		g.exec(function(err, galleries)
+			{
+				locals.nav = results.concat(galleries).sort(function(a,b){
+					if(a.menuOrder > b.menuOrder)
+					{
+						return 1;
+					}
+
+					if(a.menuOrder < b.menuOrder)
+					{
+						return -1;
+					}
+
+					return 0;
+
+				});
+				next(err);
+			}
+		)
 	});
 };
 

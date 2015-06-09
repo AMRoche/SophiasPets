@@ -7,21 +7,16 @@ var keystone = require('keystone'),
  */
 
 var Gallery = new keystone.List('Gallery', {
-	autokey: { from: 'name', path: 'key', unique: true }
+	autokey: { from: 'name', path: 'slug', unique: true }
 });
 
 Gallery.add({
 	name: { type: String, required: true },
-	publishedDate: { type: Date, default: Date.now },
-	heroImage: {
-		type: Types.LocalFile,
-		required: false,
-		index: true,
-		dest: 'public/uploads/files/images/',
-		format: function(item, file){
-			return '<img src="/'+item.imagePath+file.filename+'" style="max-width: 400px">'
-		}
-	},
+	showOnMenu: { type: Boolean, default:false},
+	menuTitle: { type: String, dependsOn: { showOnMenu: true } },
+	menuOrder: { type: Types.Number, dependsOn: { showOnMenu:true } },
+	gallery: { type: Boolean, default: true, dependsOn: { showOnMenu:true }, noedit: true},
+	content: { type: Types.Markdown, wysiwyg: true, height: 500, dependsOn: { blog:false } },
 	images: {
 		type: Types.LocalFiles,
 		required: false,

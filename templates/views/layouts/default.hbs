@@ -392,10 +392,15 @@
 								{{#if blog}}
 									<a href="/blog/" class="{{#ifeq ../../this.section 'blog'}}activePage{{else}}{{/ifeq}}
 "> {{menuTitle}} </a>
+								{{else}}{{#if gallery}}
+									<a href="/gallery/{{slug}}" class="{{#ifeq ../../section this.slug}}activePage{{else}}{{/ifeq}}
+"> {{menuTitle}} </a>
+
 								{{else}}
 									<a href="/page/{{slug}}" class="{{#ifeq ../../section this.slug}}activePage{{else}}{{/ifeq}}
 "> {{menuTitle}} </a>
-								{{/if}}
+
+								{{/if}}{{/if}}
 							</div>
 						{{/each}}
 					</nav>
