@@ -15,6 +15,7 @@ var keystone = require('keystone'),
 keystone.init({
 	'wysiwyg override toolbar': false,
 'wysiwyg menubar': true,
+'wysiwyg images': true,
 'wysiwyg skin': 'lightgray',
 'wysiwyg additional buttons': 'searchreplace, visualchars,'
  + ' charmap, ltr, rtl, pagebreak, paste, forecolor, backcolor,'
@@ -52,9 +53,16 @@ keystone.init({
 
 });
 
+keystone.set('cloudinary config', 'cloudinary://775256819974714:HdGftK1Mx3Zz5jLekPBugJS1wY0@amroche' );
+
+// optional, will prefix each image public_id with [{prefix}]/{list.path}/{field.path}/
+keystone.set('cloudinary folders', true);
+
+
 // Load your project's Models
 
 keystone.import('models');
+
 
 // Setup common locals for your templates. The following are required for the
 // bundled templates and layouts. Any runtime locals (that should be set uniquely

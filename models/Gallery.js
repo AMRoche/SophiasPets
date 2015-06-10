@@ -17,14 +17,21 @@ Gallery.add({
 	menuOrder: { type: Types.Number, dependsOn: { showOnMenu:true } },
 	gallery: { type: Boolean, default: true, dependsOn: { showOnMenu:true }, noedit: true},
 	content: { type: Types.Markdown, wysiwyg: true, height: 500, dependsOn: { blog:false } },
-	images: {
-		type: Types.LocalFiles,
-		required: false,
-		dest: 'public/uploads/files/images/',
-		format: function(item, file){
-			return '<img src="/'+item.imagePath+file.filename+'" style="max-width: 400px">'
-		}
-	}
+	// images: {
+	// 	type: Types.LocalFiles,
+	// 	allowedTypes: [
+	// 		'image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'
+	// 	],
+	// 	required: false,
+	// 	dest: 'public/uploads/files/images/',
+	// 	format: function(item, file){
+	// 		console.log(file);
+	// 		return '<img src="../../'+file.filename+'" style="max-width: 100%">'
+	// 	}
+	// }
+	images: { type: Types.CloudinaryImages, folder: 'sophiaspetcare/gallery/uploads'}
 });
+
+Gallery.defaultColumns = 'name|20%, showOnMenu|20%, menuTitle|20%, images|20%';
 
 Gallery.register();

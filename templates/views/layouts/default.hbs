@@ -148,6 +148,7 @@
 
 			.contentContainer{
 				border-left: 2px solid #FF6600;
+				overflow-y: hidden;
 			}
 
 			.menuContainer .menu {
@@ -333,6 +334,18 @@
 				width: auto;
 			}
 
+			.gallery {
+				margin: 0 auto;
+			}
+
+			.gallery .gallery-element {
+				padding: 5px;
+			}
+
+			.gallery img {
+				max-width: 100%;
+			}
+
 		</style>
 		{{!-- This file provides the default styling for the KeystoneJS Content Editor
 			- only renders when user is logged in and admin--}}
@@ -419,14 +432,15 @@
 				{{>footer}}
 			</div>
 
-		{{{isAdminEditorJS user}}}
+
 	</body>
 		{{!--
 			//- jQuery 1.11.1 is included by default, and required by both Bootstrap
 			//- and the KeystoneJS Content Editor. If you are not targeting IE8,
 			//- you can upgrade to 2.1.1 (also bundled) for better performance.
 		--}}
-		<script src="/js/lib/jquery/jquery-1.11.1.min.js"></script>
+		<script src="/js/lib/jquery/jquery-2.1.1.min.js"></script>
+
 		{{!--
 			//- Customise which Bootstrap javascript files are served by including
 			//- them specifically here, instead of bootstrap-3.2.0.min.js
@@ -436,7 +450,8 @@
 		<script type="text/javascript" src="/js/lib/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
 		<script type="text/javascript" src="/js/lib/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 		<script type="text/javascript" src="/js/lib/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
-
+		<script type="text/javascript" src="/js/lib/masonry/masonry.pkgd.min.js"></script>
+		<script type="text/javascript" src="/js/lib/masonry/imagesloaded.pkgd.min.js"></script>
 
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -450,11 +465,69 @@
 
 	$( document ).ready(function(){
 		hamburgerMenu();
+
+		if($('.gallery').length)
+		{
+			addMasonry();
+		}
+
 		resizeContentContainer();
 		addFacebook();
 		addFancybox();
 		addTwitter();
 	});
+
+	function addMasonry()
+	{
+		var correctionFactor = 0.45;
+
+		if($(document).width() > 975)
+		{
+			correctionFactor = 0.47;
+		}
+
+		var contentWidth = $('.contentContainer').width();
+
+
+		$('.fancybox-gallery').fancybox({
+			prevEffect	: 'none',
+			nextEffect	: 'none',
+			helpers	: {
+				title	: {
+					type: 'outside'
+				},
+				thumbs	: {
+					width	: 50,
+					height	: 50
+				}
+			}
+		});
+
+		$('.gallery-element>a>img').each(function(index, element){
+			var height = $(element).attr('height');
+			var width = $(element).attr('width');
+
+			if(width > correctionFactor * contentWidth)
+			{
+				height = height * ((correctionFactor * contentWidth)/width)
+				width = correctionFactor * contentWidth;
+
+				$(element).attr('height', height);
+				$(element).attr('width', width);
+			}
+		});
+
+		var grid = $('.gallery').masonry({
+				itemSelector: '.gallery-element',
+				isResizeBound: true
+			});
+
+
+		grid.imagesLoaded().progress( function() {
+			grid.masonry();
+		});
+
+	}
 
 	function addFancybox()
 	{
