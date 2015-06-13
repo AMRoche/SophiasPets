@@ -12,8 +12,8 @@ var LogEntry = new keystone.List('LogEntry', {
 
 LogEntry.add({
 	pet: { type: Types.Relationship, ref: 'Pet', required: true, many: true, initial: true },
-	customer: { type: Types.Relationship, ref: 'Customer', many: true, many: true, required: true, initial: false },
-	title: { type: String },
+	customer: { type: Types.Relationship, ref: 'Customer', many: true, many: true, required: false, initial: true },
+	title: { type: String, required: true, initial: true },
 	date: { type: Types.Datetime, default: Date.now, index: true },
 	notes: { type: Types.Html, wysiwyg: true, height: 300 }
 });
