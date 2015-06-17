@@ -26,8 +26,7 @@ Post.add({
 		}
 	},
 	content: {
-		brief: { type: Types.Html, wysiwyg: true, height: 150 },
-		extended: { type: Types.Html, wysiwyg: true, height: 400 }
+		extended: { type: Types.Markdown, wysiwyg: true, height: 400 }
 	},
 	categories: { type: Types.Relationship, ref: 'PostCategory', many: true },
 	pets: { type: Types.Relationship, ref: 'Pet', many: true }
